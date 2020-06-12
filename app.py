@@ -17,7 +17,7 @@ def prompt_new_entry():
 
 def view_entries(entries):
     for entry in entries:
-        print(f"{entry['x_coordinates']}\n{entry['y_coordinates']}\n\n")
+        print(f"{entry[0]}\n{entry[1]}\n\n")
 
 print(welcome)
 create_table()

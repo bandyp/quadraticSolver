@@ -1,6 +1,7 @@
 import sqlite3
 
 connection = sqlite3.connect("data.db")
+connection.row_factory = sqlite3.Row
 
 def create_table():
     with connection:
@@ -9,7 +10,11 @@ def create_table():
 
 def add_entry(entry_x_coordinates, entry_y_coordinates):
     with connection:
-        connection.execute("INSERT INTO entries VALUES ('1234', '4321');")
+        connection.execute(
+            "INSERT INTO entries VALUES (?,?);", (entry_x_coordinates, entry_y_coordinates)
+        )
 
 def get_entries():
-    return entries
+    cursor = connection.execute("SELECT * FROM entries;")
+    return cursor
+
